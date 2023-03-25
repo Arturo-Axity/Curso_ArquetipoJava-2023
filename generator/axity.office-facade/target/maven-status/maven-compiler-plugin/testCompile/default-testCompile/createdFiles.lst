@@ -1,0 +1,6 @@
+com\axity\office\facade\RoleFacadeTest.class
+com\axity\office\facade\UserFacadeTest.class
+com\axity\office\facade\TerritoryFacadeTest.class
+com\axity\office\facade\CountryFacadeTest.class
+com\axity\office\ApplicationTest.class
+com\axity\office\facade\OfficeFacadeTest.class
