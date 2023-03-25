@@ -1,0 +1,15 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+office-api,com.axity.office.config,RedisConfiguration,9,59,2,2,2,13,2,4,0,4
+office-api,com.axity.office,Application,5,3,0,0,2,1,1,1,1,1
+office-api,com.axity.office.handler,ValidationExceptionHandler,33,3,0,0,5,1,2,1,2,1
+office-api,com.axity.office.controller,UserController,24,122,4,4,6,27,5,8,1,8
+office-api,com.axity.office.controller,CountryController.new TypeToken() {...},6,0,0,0,1,0,1,0,1,0
+office-api,com.axity.office.controller,OfficeController,24,122,4,4,6,27,5,8,1,8
+office-api,com.axity.office.controller,OfficeController.new TypeToken() {...},6,0,0,0,1,0,1,0,1,0
+office-api,com.axity.office.controller,TerritoryController,24,122,4,4,6,27,5,8,1,8
+office-api,com.axity.office.controller,HomeController,15,3,0,0,4,1,1,1,1,1
+office-api,com.axity.office.controller,RoleController.new TypeToken() {...},6,0,0,0,1,0,1,0,1,0
+office-api,com.axity.office.controller,CountryController,24,122,4,4,6,27,5,8,1,8
+office-api,com.axity.office.controller,UserController.new TypeToken() {...},6,0,0,0,1,0,1,0,1,0
+office-api,com.axity.office.controller,RoleController,24,122,4,4,6,27,5,8,1,8
+office-api,com.axity.office.controller,TerritoryController.new TypeToken() {...},6,0,0,0,1,0,1,0,1,0

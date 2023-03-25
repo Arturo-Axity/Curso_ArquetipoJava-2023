@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TerritoryController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">office-api</a> &gt; <a href="index.source.html" class="el_package">com.axity.office.controller</a> &gt; <span class="el_source">TerritoryController.java</span></div><h1>TerritoryController.java</h1><pre class="source lang-java linenums">package com.axity.office.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.axity.office.commons.aspectj.JsonResponseInterceptor;
+import com.axity.office.commons.dto.TerritoryDto;
+import com.axity.office.commons.request.PaginatedRequestDto;
+import com.axity.office.commons.response.GenericResponseDto;
+import com.axity.office.commons.response.PaginatedResponseDto;
+import com.axity.office.facade.TerritoryFacade;
+import com.axity.office.persistence.StringRedisRepository;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * Territory controller class
+ * 
+ * @author username@axity.com
+ *
+ */
+@RestController
+@RequestMapping(&quot;/api/territories&quot;)
+@CrossOrigin
+<span class="fc" id="L41">@Slf4j</span>
+<span class="fc" id="L42">public class TerritoryController</span>
+{
+  @Autowired
+  private TerritoryFacade territoryFacade;
+
+  @Autowired
+  private StringRedisRepository redis;
+
+  /***
+   * Method to get Territory
+   * 
+   * @param limit The limit
+   * @param offset The offset
+   * @return A paginated result of Territory
+   */
+  @JsonResponseInterceptor
+  @GetMapping(path = &quot;&quot;, produces = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(tags = &quot;Territorys&quot;, summary = &quot;Method to get Territorys paginated&quot;)
+  public ResponseEntity&lt;PaginatedResponseDto&lt;TerritoryDto&gt;&gt; findTerritorys(
+      @RequestParam(name = &quot;limit&quot;, defaultValue = &quot;50&quot;, required = false)
+      int limit, @RequestParam(name = &quot;offset&quot;, defaultValue = &quot;0&quot;, required = false)
+      int offset )
+  {
+<span class="fc" id="L65">    var result = this.territoryFacade.findTerritorys( new PaginatedRequestDto( limit, offset ) );</span>
+<span class="fc" id="L66">    return ResponseEntity.ok( result );</span>
+  }
+
+  /**
+   * Method to get Territory by id
+   * 
+   * @param id The territory Id
+   * @return An registry of territory or 204
+   */
+  @JsonResponseInterceptor
+  @GetMapping(path = &quot;/{id}&quot;, produces = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(tags = &quot;Territorys&quot;, summary = &quot;Method to get Territory by id&quot;)
+  public ResponseEntity&lt;GenericResponseDto&lt;TerritoryDto&gt;&gt; findTerritory( @PathVariable(&quot;id&quot;)
+  Integer id )
+  {
+    
+<span class="fc" id="L82">    String key = this.getTerritoryKey( id );</span>
+
+<span class="fc" id="L84">    Gson gson = new GsonBuilder().create();</span>
+<span class="fc" id="L85">    GenericResponseDto&lt;TerritoryDto&gt; result = null;</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">    if( redis.hasKey( key ) )</span>
+    {
+<span class="nc" id="L88">      var json = this.redis.get( key );</span>
+
+<span class="nc" id="L90">      result = gson.fromJson( json, new TypeToken&lt;GenericResponseDto&lt;TerritoryDto&gt;&gt;()</span>
+<span class="nc" id="L91">      {</span>
+<span class="nc" id="L92">      }.getType() );</span>
+<span class="nc" id="L93">    }</span>
+    else
+    {
+<span class="fc" id="L96">      result = this.territoryFacade.find( id );</span>
+
+<span class="fc" id="L98">      String json = gson.toJson( result );</span>
+<span class="fc" id="L99">      this.redis.add( key, json );</span>
+    }
+    
+
+<span class="fc" id="L103">    HttpStatus status = HttpStatus.OK;</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">    if( result == null )</span>
+    {
+<span class="nc" id="L106">      status = HttpStatus.NO_CONTENT;</span>
+    }
+<span class="fc" id="L108">    return new ResponseEntity&lt;&gt;( result, status );</span>
+  }
+
+  private String getTerritoryKey( Integer id )
+  {
+<span class="fc" id="L113">    String key = new StringBuilder().append( &quot;Territory.byTerritoryId:&quot; ).append( id ).toString();</span>
+<span class="fc" id="L114">    return key;</span>
+  }
+
+  /**
+   * Method to create a Territory
+   * 
+   * @param dto The Territory object
+   * @return
+   */
+  @JsonResponseInterceptor
+  @PostMapping(path = &quot;&quot;, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(tags = &quot;Territorys&quot;, summary = &quot;Method to create a Territory&quot;)
+  public ResponseEntity&lt;GenericResponseDto&lt;TerritoryDto&gt;&gt; create( @RequestBody TerritoryDto dto )
+  {
+<span class="fc" id="L128">    var result = this.territoryFacade.create( dto );</span>
+<span class="fc" id="L129">    return new ResponseEntity&lt;&gt;( result, HttpStatus.CREATED );</span>
+  }
+
+  /**
+   * Method to update a Territory
+   * 
+   * @param id The Territory Id
+   * @param dto The Territory object
+   * @return
+   */
+  @JsonResponseInterceptor
+  @PutMapping(path = &quot;/{id}&quot;, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(tags = &quot;Territorys&quot;, summary = &quot;Method to update a Territory&quot;)
+  public ResponseEntity&lt;GenericResponseDto&lt;Boolean&gt;&gt; update( @PathVariable(&quot;id&quot;) Integer id, @RequestBody TerritoryDto dto )
+  {
+<span class="fc" id="L144">    dto.setId( id );</span>
+<span class="fc" id="L145">    var result = this.territoryFacade.update( dto );</span>
+
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">    if( result.getBody() )</span>
+    {
+<span class="fc" id="L149">      this.redis.delete( this.getTerritoryKey( id ) );</span>
+    }
+
+<span class="fc" id="L152">    return ResponseEntity.ok( result );</span>
+  }
+
+  /**
+   * Method to delete a Territory
+   * 
+   * @param id The Territory Id
+   * @return
+   */
+  @JsonResponseInterceptor
+  @DeleteMapping(path = &quot;/{id}&quot;, produces = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(tags = &quot;Territorys&quot;, summary = &quot;Method to delete a Territory&quot;)
+  public ResponseEntity&lt;GenericResponseDto&lt;Boolean&gt;&gt; delete( @PathVariable(&quot;id&quot;) Integer id )
+  {
+<span class="fc" id="L166">    var result = this.territoryFacade.delete( id );</span>
+
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">    if( result.getBody() )</span>
+    {
+<span class="fc" id="L170">      this.redis.delete( this.getTerritoryKey( id ) );</span>
+    }
+<span class="fc" id="L172">    return ResponseEntity.ok( result );</span>
+  }
+
+  /**
+   * Ping
+   * 
+   * @return Pong
+   */
+  @JsonResponseInterceptor
+  @GetMapping(path = &quot;ping&quot;, produces = MediaType.APPLICATION_JSON_VALUE)
+  @Operation(tags = &quot;Territorys&quot;, summary = &quot;Ping&quot;)
+  public ResponseEntity&lt;GenericResponseDto&lt;String&gt;&gt; ping( )
+  {
+<span class="nc" id="L185">    return ResponseEntity.ok( new GenericResponseDto&lt;&gt;(&quot;pong&quot;) );</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

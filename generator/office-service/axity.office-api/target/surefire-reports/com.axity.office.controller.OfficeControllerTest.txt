@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.axity.office.controller.OfficeControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.885 s - in com.axity.office.controller.OfficeControllerTest

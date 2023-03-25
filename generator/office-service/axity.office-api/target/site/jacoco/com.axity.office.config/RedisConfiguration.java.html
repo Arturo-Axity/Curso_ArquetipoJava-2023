@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RedisConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">office-api</a> &gt; <a href="index.source.html" class="el_package">com.axity.office.config</a> &gt; <span class="el_source">RedisConfiguration.java</span></div><h1>RedisConfiguration.java</h1><pre class="source lang-java linenums">package com.axity.office.config;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisPassword;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * Redis configuration class
+ * 
+ * @author username@axity.com
+ */
+@Configuration
+<span class="fc" id="L21">@Slf4j</span>
+<span class="fc" id="L22">public class RedisConfiguration</span>
+{
+  @Value(&quot;${application.redis.hostname:localhost}&quot;)
+  private String hostname;
+
+  @Value(&quot;${application.redis.port:6379}&quot;)
+  private int port;
+
+  @Value(&quot;${application.redis.username:}&quot;)
+  private String username;
+
+  @Value(&quot;${application.redis.password:}&quot;)
+  private String password;
+
+  @Bean
+  public JedisConnectionFactory jedisConnectionFactory()
+  {
+<span class="fc" id="L39">    log.info( &quot;-&gt;redis host: {}&quot;, this.hostname );</span>
+<span class="fc" id="L40">    log.info( &quot;-&gt;redis port: {}&quot;, this.port );</span>
+<span class="fc" id="L41">    var configuration = new RedisStandaloneConfiguration( this.hostname, this.port );</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">    if( StringUtils.isNotBlank( this.username ) )</span>
+    {
+<span class="nc" id="L44">      configuration.setUsername( username );</span>
+    }
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">    if( StringUtils.isNotBlank( this.password ) )</span>
+    {
+<span class="nc" id="L48">      configuration.setPassword( RedisPassword.of( password ) );</span>
+    }
+<span class="fc" id="L50">    return new JedisConnectionFactory( configuration );</span>
+  }
+
+  @Bean
+  public RedisTemplate&lt;String, String&gt; redisTemplate()
+  {
+<span class="fc" id="L56">    RedisTemplate&lt;String, String&gt; template = new RedisTemplate&lt;&gt;();</span>
+<span class="fc" id="L57">    template.setConnectionFactory( jedisConnectionFactory() );</span>
+<span class="fc" id="L58">    template.setKeySerializer( new StringRedisSerializer() );</span>
+<span class="fc" id="L59">    template.setValueSerializer( new StringRedisSerializer() );</span>
+<span class="fc" id="L60">    return template;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

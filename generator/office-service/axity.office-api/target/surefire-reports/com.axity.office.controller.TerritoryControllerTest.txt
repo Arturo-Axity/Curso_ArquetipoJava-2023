@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.axity.office.controller.TerritoryControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.399 s - in com.axity.office.controller.TerritoryControllerTest

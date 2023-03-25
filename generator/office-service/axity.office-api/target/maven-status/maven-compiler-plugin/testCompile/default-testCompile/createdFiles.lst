@@ -1,0 +1,7 @@
+com\axity\office\dto\QueryWrapperDto.class
+com\axity\office\controller\CountryControllerTest.class
+com\axity\office\ApplicationTest.class
+com\axity\office\controller\RoleControllerTest.class
+com\axity\office\controller\OfficeControllerTest.class
+com\axity\office\controller\UserControllerTest.class
+com\axity\office\controller\TerritoryControllerTest.class
