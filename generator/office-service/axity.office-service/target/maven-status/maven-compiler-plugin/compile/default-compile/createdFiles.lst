@@ -1,0 +1,12 @@
+com\axity\office\service\impl\TerritoryServiceImpl.class
+com\axity\office\service\CountryService.class
+com\axity\office\service\impl\OfficeServiceImpl.class
+com\axity\office\service\impl\RoleServiceImpl.class
+com\axity\office\service\util\DozerConfig.class
+com\axity\office\service\OfficeService.class
+com\axity\office\service\util\MessageSerializer.class
+com\axity\office\service\impl\UserServiceImpl.class
+com\axity\office\service\TerritoryService.class
+com\axity\office\service\UserService.class
+com\axity\office\service\RoleService.class
+com\axity\office\service\impl\CountryServiceImpl.class

@@ -1,0 +1,10 @@
+com\axity\office\model\QRoleDO.class
+com\axity\office\model\UserDO.class
+com\axity\office\model\QUserDO.class
+com\axity\office\model\OfficeDO.class
+com\axity\office\model\QCountryDO.class
+com\axity\office\model\QOfficeDO.class
+com\axity\office\model\TerritoryDO.class
+com\axity\office\model\QTerritoryDO.class
+com\axity\office\model\CountryDO.class
+com\axity\office\model\RoleDO.class

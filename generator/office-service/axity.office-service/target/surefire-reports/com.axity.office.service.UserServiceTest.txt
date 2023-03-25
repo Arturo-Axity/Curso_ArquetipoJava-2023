@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.axity.office.service.UserServiceTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 21.695 s - in com.axity.office.service.UserServiceTest

@@ -1,0 +1,6 @@
+com\axity\office\service\UserServiceTest.class
+com\axity\office\service\OfficeServiceTest.class
+com\axity\office\ApplicationTest.class
+com\axity\office\service\CountryServiceTest.class
+com\axity\office\service\RoleServiceTest.class
+com\axity\office\service\TerritoryServiceTest.class

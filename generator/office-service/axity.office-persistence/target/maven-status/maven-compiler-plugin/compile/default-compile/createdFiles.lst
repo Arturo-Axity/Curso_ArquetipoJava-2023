@@ -1,0 +1,6 @@
+com\axity\office\persistence\RolePersistence.class
+com\axity\office\persistence\StringRedisRepository.class
+com\axity\office\persistence\UserPersistence.class
+com\axity\office\persistence\CountryPersistence.class
+com\axity\office\persistence\OfficePersistence.class
+com\axity\office\persistence\TerritoryPersistence.class
