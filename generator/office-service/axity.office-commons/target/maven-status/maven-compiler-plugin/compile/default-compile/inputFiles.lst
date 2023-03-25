@@ -1,0 +1,17 @@
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\dto\OfficeDto.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\dto\UserDto.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\response\GenericResponseDto.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\request\PaginatedRequestDto.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\util\ValidationUtil.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\dto\TerritoryDto.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\exception\ValidationException.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\response\HeaderDto.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\exception\BusinessException.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\dto\RoleDto.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\enums\ErrorCode.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\dto\CountryDto.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\util\MessagePropertiesConfig.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\aspectj\JsonResponseInterceptor.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\aspectj\JsonResponseHandlerInterceptor.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\request\MessageDto.java
+C:\Users\admin\Documents\CursoArquetipoJava\java-archetype\jdk11-springboot\generator\office-service\axity.office-commons\src\main\java\com\axity\office\commons\response\PaginatedResponseDto.java
